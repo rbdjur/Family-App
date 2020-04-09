@@ -1,0 +1,17 @@
+<!-- <mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>1</mat-grid-tile>
+  <mat-grid-tile>2</mat-grid-tile>
+  <mat-grid-tile>3</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile>
+</mat-grid-list> -->
+
+<div class="container"
+*ngFor="let user of data"
+>
+  <div class="box">
+    {{user.name}}
+    <div class="wrapper">
+      <app-modal></app-modal>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+
+mat-form-field {
+  min-width: 0px;
+  max-width: auto;
+  width: 100%;
+};
+
+.example-form {
+  width: 80%;
+}
+
+.email-full-width {
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column; */
+  width: 100%;
+  /* border: 1px solid blue */
+}
+
+.password-full-width {
+  width: 100%;
+}
+
+.button-row {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}

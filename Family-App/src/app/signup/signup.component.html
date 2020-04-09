@@ -1,0 +1,75 @@
+<form (submit)="onSignup(signupForm)" #signupForm= "ngForm">
+  <mat-form-field class="first-full-width">
+    <mat-label for="first"> First Name
+    </mat-label>
+    <input
+      matInput
+      placeholder="First Name"
+      ngModel
+      type="text"
+      id="first"
+      class="form-control"
+      name="first"
+      required
+      #firstInput = "ngModel"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="last-full-width">
+      <mat-label for="last"> Last Name
+      </mat-label>
+      <input
+      matInput
+      placeholder="Last Name"
+      ngModel
+      type="text"
+      id="last"
+      class="form-control"
+      name="last"
+      required
+      #lastInput = "ngModel"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="email-full-width">
+      <mat-label for="email"> E-mail:
+      </mat-label>
+      <input
+      matInput
+      placeholder="example@example.com"
+      ngModel
+      type="text"
+      id="email"
+      class="form-control"
+      name="email"
+      required
+      email
+      #emailInput = "ngModel"
+      />
+  </mat-form-field>
+
+  <mat-form-field class="password-full-width">
+    <mat-label>Password</mat-label>
+    <input
+    matInput
+    placeholder="******"
+    ngModel
+    type="password"
+    id="passowrd"
+    class="form-control"
+    name="password"
+    required
+    password
+    #emailInput = "ngModel"
+    />
+  </mat-form-field>
+
+  <div class="button-row">
+    <button mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!signupForm.valid">
+      Register as a family member
+    </button>
+  </div>
+</form>

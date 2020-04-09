@@ -1,0 +1,44 @@
+<form (submit)="onLogin(loginForm)" #loginForm= "ngForm">
+  <mat-form-field class="email-full-width">
+      <mat-label for="email"> E-mail:
+        </mat-label>
+        <input
+          matInput
+          placeholder="example@example.com"
+          ngModel
+          type="text"
+          id="email"
+          class="form-control"
+          name="email"
+          required
+          email
+          #emailInput = "ngModel"
+          />
+      </mat-form-field>
+
+      <mat-form-field class="password-full-width">
+        <mat-label for ="password">Password
+        </mat-label>
+        <input
+          matInput
+          placeholder="password"
+          type="password"
+          id="password"
+          name="password"
+          ngModel
+          required
+          password
+          minlength="6"
+          #passwordInput = "ngModel"
+          />
+      </mat-form-field>
+
+      <div class="button-row">
+        <button mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!loginForm.valid">
+          Login
+        </button>
+      </div>
+    </form>

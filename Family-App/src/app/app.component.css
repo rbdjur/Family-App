@@ -1,0 +1,12 @@
+main {
+  margin-top: 3rem;
+  /* display: flex;
+  justify-content: space-evenly;
+  flex-direction: column; */
+  /* margin: 10rem 10rem 10rem 10rem; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
