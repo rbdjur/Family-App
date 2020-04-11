@@ -6,7 +6,11 @@ import { LoginData } from './login-auth-data.model';
 @Injectable({ providedIn: 'root'})
 
 export class AuthService {
-  constructor(private http: HttpClient) {
+  private token: string;
+  constructor(private http: HttpClient) {}
+
+  getToken() {
+    return this.token;
   }
 
   signupUser(first: string, last: string, username: string, password: string) {
@@ -29,9 +33,11 @@ export class AuthService {
       username,
       password
     };
-    this.http.post('http://localhost:8080/login', authData)
+    this.http.post<{token: string}>('http://localhost:8080/login', authData)
     .subscribe(response => {
       console.log('auth.service.ts - loginUser() - token ', response);
+      const token = response.token;
+      this.token = token;
     });
   }
 }

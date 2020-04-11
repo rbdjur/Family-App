@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +15,9 @@ import {ModalPopComponent} from './square/modal/modal.component';
 
 import { DataService } from './data.service';
 import { AuthService } from './auth.service';
+// import {AuthInterceptorService} from './auth-interceptor.service';
+import {HeaderInterceptor} from './auth-interceptor.service';
+
 
 import {MatListModule, MatList} from '@angular/material/list';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
@@ -55,7 +58,12 @@ import { SignupComponent } from './signup/signup.component';
     MatListModule,
     MatToolbarModule
   ],
-  providers: [DataService, ],
+  providers: [DataService,
+    // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true},
+
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
