@@ -61,8 +61,6 @@ import { SignupComponent } from './signup/signup.component';
   providers: [DataService,
     // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true},
-
-
   ],
   bootstrap: [AppComponent]
 })

@@ -28,7 +28,7 @@ mongoose.connect('mongodb://localhost:27017/work', { useNewUrlParser: true, useU
 // set Headers
 app.use((req, res, next)=> {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, PUT, OPTIONS");
   next();
 });
@@ -51,7 +51,7 @@ app.get('/square', (req, res, next) => {
 //     message: 'POST - /login - user.js'
 //   });
 // })
-
+app.get('/square', userRoutes);
 app.post('/signup', userRoutes);
 app.post('/login', userRoutes);
 
