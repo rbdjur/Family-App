@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+.info-text-mat-body-1 {
+  text-align: center;
+}
+
+.container {
+  background-color: aliceblue;
+  margin: auto;
+}
+
+mat-expansion-panel {
+background-color: azure;
+};
+
+mat-spinner {
+  margin: auto;
+}
+
+mat-paginator {
+  margin-top: 1rem;
+}

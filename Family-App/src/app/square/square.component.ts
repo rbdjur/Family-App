@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { DataService } from '../data.service';
 import { getQueryPredicate } from '@angular/compiler/src/render3/view/util';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -12,11 +12,10 @@ import {ModalComponent} from './modal/modal.component';
   styleUrls: ['./square.component.css'],
   providers: []
 })
-export class SquareComponent implements OnInit {
+export class SquareComponent implements OnInit, OnDestroy {
 
   constructor(private dataService: DataService) {}
 
-  // @Input() data;
   data;
   htmlSpecs: object = {
     colors: ['blue', 'green', 'lavender', 'pink'],
@@ -32,8 +31,18 @@ export class SquareComponent implements OnInit {
     this.dataService.getData()
     .subscribe(
       (responseData) => {
+        console.log('responseData', responseData);
         this.data = this.dataService.convertJsontoArray(responseData);
-        console.log('Data in an array', this.data);
+        // console.log('Data in an array', this.data);
       });
+  }
+
+  ngOnDestroy() {
+    // this.dataService.emptyArray(this.data);
+    // console.log('on destory - should be empty array, this.data', this.data);
+
+    // const empty = this.dataService.emptyArray();
+    // console.log('const empty should be empty', empty);
+    // this.data = empty;
   }
 }

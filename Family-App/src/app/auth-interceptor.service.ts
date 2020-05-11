@@ -3,32 +3,18 @@ import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
-@Injectable({providedIn: 'root'})
-export class HeaderInterceptor implements HttpInterceptor {
+@Injectable()
+export class AuthInterceptorService implements HttpInterceptor {
   constructor(private authService: AuthService) {}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // console.log('inside intercept method');
     const authToken = this.authService.getToken();
-    // const authRequest = req.clone({
-    //   headers: req.headers.set('Authorization', authToken)
-    // });
+    // console.log('authTopken from auth-interceptor', authToken);
     const authRequest = req.clone({
-      headers: req.headers.set('Authorization', 'Beara' + authToken)
+      headers: req.headers.set('Authorization', 'Bearer ' + authToken)
     });
+    // console.log('authToken', authToken);
+    // console.log('authRequest', authRequest);
     return next.handle(authRequest);
   }
 }
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AuthInterceptorService implements HttpInterceptor {
-//   constructor(private authService: AuthService) { }
-//   intercept(req: HttpRequest<any>, next: HttpHandler) {
-//     const authToken = this.authService.getToken();
-//     const authRequest = req.clone({
-//       headers: req.headers.set('Authorization', 'Bearer' + authToken)
-//       // ('Authorization', 'Bearer' + authToken)
-//     });
-//     return next.handle(authRequest);
-//   }
-// }

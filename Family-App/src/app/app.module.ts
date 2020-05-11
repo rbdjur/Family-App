@@ -9,26 +9,36 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { IndividualComponent } from './individual/individual.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { PostsComponent } from './posts/posts.component';
+import { PostsCreateComponent } from './posts/posts-create/posts-create.component';
+import {PostListComponent} from './posts/post-list/post-list.component';
+import { ErrorComponent } from './error/error.component';
+
 import { SquareComponent } from './square/square.component';
 import { ModalComponent } from './square/modal/modal.component';
 import {ModalPopComponent} from './square/modal/modal.component';
 
 import { DataService } from './data.service';
 import { AuthService } from './auth.service';
-// import {AuthInterceptorService} from './auth-interceptor.service';
-import {HeaderInterceptor} from './auth-interceptor.service';
-
+import {AuthInterceptorService} from './auth-interceptor.service';
+import { ErrorInterceptor } from './error-interceptor';
+import { AuthGuard } from './auth.guard';
+import {PostsService} from './posts/posts.service';
 
 import {MatListModule, MatList} from '@angular/material/list';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-// import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { SignupComponent } from './signup/signup.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
 
+import {AngularMaterialModule} from './angular-material-module';
 
 
 @NgModule({
@@ -36,32 +46,28 @@ import { SignupComponent } from './signup/signup.component';
     AppComponent,
     HeaderComponent,
     IndividualComponent,
-    LoginComponent,
     SquareComponent,
     ModalComponent,
     ModalPopComponent,
-    SignupComponent,
+    PostsComponent,
+    PostsCreateComponent,
+    PostListComponent,
+    ErrorComponent,
   ],
   imports: [
-
-  BrowserModule,
+    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatBottomSheetModule,
-    MatListModule,
-    MatToolbarModule
+    AngularMaterialModule,
   ],
-  providers: [DataService,
-    // {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true},
+  providers: [DataService, PostsService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }

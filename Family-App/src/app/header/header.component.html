@@ -4,12 +4,34 @@
   </span>
   <span class="spacer"></span>
   <ul>
-    <!-- <li> -->
-      <a mat-stroked-button routerLink="/login">Login</a>
-      <!-- <button mat-button routerLink ="/login"> Login </button> -->
-    <!-- </li> -->
-    <!-- <li> -->
-      <a mat-stroked-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
-    <!-- </li> -->
+
+    <a mat-stroked-button
+    routerLink="/posts"
+    routerLinkActive="mat-accent"
+    >
+    Posts</a>
+
+    <a mat-stroked-button
+    routerLink="/create"
+    routerLinkActive="mat-accent"
+    *ngIf="userIsAuthenticated"
+    >Create Post</a>
+
+    <a mat-stroked-button
+    routerLink="/auth/login"
+    routerLinkActive="mat-accent"
+    *ngIf="!userIsAuthenticated"
+    >Login</a>
+
+    <a mat-stroked-button
+    routerLink="/auth/signup"
+    routerLinkActive="mat-accent"
+    *ngIf="!userIsAuthenticated">Signup</a>
+
+    <a mat-stroked-button
+    *ngIf="userIsAuthenticated"
+    (click)="onLogout()">Logout
+    </a>
+
   </ul>
 </mat-toolbar>

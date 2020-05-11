@@ -3,14 +3,16 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
   try {
-    console.log('module.exports function of header authorization');
     const token = req.headers.authorization.split(" ")[1];
-    console.log('token[1]', token);
-    jwt.verify(token, "secret_longer");
+    // console.log('token[1]', token);
+    const decodedToken = jwt.verify(token, "secret_longer");
+    req.userData = {email: decodedToken.email, userId: decodedToken.userId}
     next();
   } catch (error) {
+    // console.log('error', error);
     res.status(401).json({
-      message: "Auth failed for middleware protect routes."
+      message: "You are not authenticated",
+      err: error
     })
   }
 }
