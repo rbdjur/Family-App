@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+const BACKEND_URL = 'http://localhost:8080/api/posts/';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +18,7 @@ export class PostsService {
 
   getPosts(postsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
-    this.http.get<{message: string; posts: any, maxPosts: number}>('http://localhost:8080/api/posts' + queryParams)
+    this.http.get<{message: string; posts: any, maxPosts: number}>('http://localhost:8080/api/posts/' + queryParams)
     .pipe(
       map((postData) => {
       return {
@@ -66,7 +68,7 @@ export class PostsService {
     // postData.append('title', title);
     // postData.append('content', content);
 
-    this.http.post<{message: string, postId: string}>('http://localhost:8080/api/posts', postData)
+    this.http.post<{message: string, postId: string}>('http://localhost:8080/api/posts/', postData)
     .subscribe((responseData) => {
       this.router.navigate(['/posts']);
     });
@@ -85,7 +87,7 @@ export class PostsService {
     // postData.append('title', title);
     // postData.append('content', content);
     this.http.put('http://localhost:8080/api/posts/' + id, postData).subscribe(response => {
-    this.router.navigate(['/']);
+    this.router.navigate(['/posts']);
   });
   }
 

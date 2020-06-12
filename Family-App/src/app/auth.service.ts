@@ -41,15 +41,10 @@ export class AuthService {
     };
     this.http.post<{email: string, password: string}>('http://localhost:8080/api/user/signup', authData)
     .subscribe(() => {
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['auth/login']);
     }, error => {
       this.authStatusListener.next(false);
     });
-    // .subscribe(response => {
-    //   console.log('auth.service.ts - signupUser() ', response);
-    // }, error => {
-    //   console.log(error);
-    // });
   }
 
   loginUser(email: string, password: string) {
@@ -106,7 +101,7 @@ export class AuthService {
     this.userId = null;
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
   private setAuthTimer(duration: number) {

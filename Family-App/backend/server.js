@@ -3,7 +3,10 @@ var express = require('express');
 var path = require("path");
 const assert = require("assert");
 
-const app = require('../backend/backend_server_mongoose');
+// path when server.js file is in the /src folder of the front end code
+// const app = require('../backend/backend_server_mongoose');
+
+const app = require('./backend_server_mongoose');
 
 const port = process.env.PORT || 8080;
 

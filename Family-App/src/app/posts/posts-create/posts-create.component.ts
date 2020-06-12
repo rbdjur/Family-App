@@ -23,11 +23,14 @@ export class PostsCreateComponent implements OnInit, OnDestroy {
   private postId: string;
   private authStatusSub: Subscription;
 
-  constructor(public postsService: PostsService, public router: ActivatedRoute, private authService: AuthService) { }
+  constructor(
+    public postsService: PostsService,
+    public router: ActivatedRoute,
+    private authService: AuthService) { }
 
 
-  ngOnInit(): void {
-    this.authService.getAuthStatusListener().subscribe(authStatus => {
+  ngOnInit() {
+    this.authStatusSub = this.authService.getAuthStatusListener().subscribe(authStatus => {
       this.isLoading = false;
     });
     this.form = new FormGroup({
@@ -65,10 +68,12 @@ export class PostsCreateComponent implements OnInit, OnDestroy {
     this.authStatusSub.unsubscribe();
   }
 
-
 onSavePost() {
-    this.isLoading = true;
-    if (this.mode === 'create') {
+  if (this.form.invalid) {
+    return;
+  }
+  this.isLoading = true;
+  if (this.mode === 'create') {
       this.postsService.addPost(
         this.form.value.title,
         this.form.value.content);
@@ -78,6 +83,6 @@ onSavePost() {
         this.form.value.title,
         this.form.value.content);
     }
-    this.form.reset();
+  this.form.reset();
   }
 }

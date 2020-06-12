@@ -65,7 +65,7 @@ exports.getPosts = (req, res, next) => {
   }
   postQuery.then((documents)=> {
     fetchedPost = documents;
-    return Post.count();
+    return Post.countDocuments();
   }).then(count => {
     res.status(200).json({
       message: 'post fetched successfully',

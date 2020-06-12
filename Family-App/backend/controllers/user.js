@@ -25,7 +25,6 @@ exports.createUser = (req, res, next) => {
     });
   }
 
-
   exports.userLogin = (req, res, next) => {
     // console.log('email', req.body.email);
     let fetchedUser;
