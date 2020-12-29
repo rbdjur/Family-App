@@ -35,7 +35,7 @@ exports.createUser = (req, res, next) => {
       // console.log('user', user);
         if(!user) {
           return res.status(401).json({
-            message:"BAD 1"
+            message:"email/username does not match."
           });
         }
       fetchedUser = user;
@@ -46,14 +46,15 @@ exports.createUser = (req, res, next) => {
       // console.log('return bcrypt', result);
       if(!result) {
         return res.status(401).json({
-          message:"BAD 2"
+          message:"Error"
         });
       }
       const token = jwt.sign({
         email: fetchedUser.email,
         userId: fetchedUser._id
-      }, "secret_longer", {expiresIn: '1h'}
+      }, process.env.JWT_KEY, {expiresIn: '1h'}
       );
+      // secret_longer
       console.log('jwt sign - const token', token);
       res.status(200).json({
         token: token,

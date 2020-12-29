@@ -18,7 +18,12 @@ const app = express();
 
 // Mongo Atlast (cloud hosting)
 // 'mongodb+srv://Ronaldo:nalslvtTHEHvdJSW@cluster0-c2jqo.mongodb.net/node-angular?retryWrites=true&w=majority'
-mongoose.connect('mongodb+srv://Ronaldo:nalslvtTHEHvdJSW@cluster0-c2jqo.mongodb.net/node-angular', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+
+// 'mongodb+srv://Ronaldo:' + process.env.MONGO_ATLAS_PW + '@cluster0-c2jqo.mongodb.net/node-angular'
+
+// nalslvtTHEHvdJSW
+// node-angular
+mongoose.connect('mongodb+srv://Ronaldo:nalslvtTHEHvdJSW@cluster0-c2jqo.mongodb.net/node-angular?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 .then(()=> {
   console.log('connected to database');
 })
