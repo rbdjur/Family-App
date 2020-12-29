@@ -9,9 +9,7 @@ This app is a full-stack (MEAN) message board app.  This app is a message board 
 This app is hosted on **AWS (Elastic Beanstalk)**. 
 
 Visit the app and post your next message at [The Message Board App](http://recentapp-env.eba-bkgdwfgh.us-east-2.elasticbeanstalk.com/auth/login)!
-
 **************************
-
 # <h3> Instruction Steps <h3>
 
 1. Go to [The Message Board App](http://recentapp-env.eba-bkgdwfgh.us-east-2.elasticbeanstalk.com/auth/login).
